@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, NavLink } from "react-router-dom";
 import PostForm from "./components/PostForm";
 import PostList from "./components/PostList";
 import Img from "./assets/gratitude.jpg";
+import { useSelector } from "react-redux";
 
 export default function App() {
+  const { notlar } = useSelector(({ notlar }) => {
+    return { notlar };
+  });
+  useEffect(() => {
+    localStorage.setItem("deger", JSON.stringify(notlar));
+  }, [notlar]);
+  console.log(notlar);
   return (
     <div>
       <div className="bg-white shadow mb-8">
